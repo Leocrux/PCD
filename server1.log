@@ -1,0 +1,5 @@
+Protocol tcp
+Ack False
+Buffer_size 1024
+Received 10485760 bytes
+Received 10240 messages

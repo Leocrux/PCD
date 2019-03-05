@@ -1,0 +1,6 @@
+Protocol udp
+Ack False
+Buffer_size 1024
+Sent 2024000516 bytes
+Sent 1976564 messages
+Transmission time was 33.992613792419434 seconds

@@ -69,9 +69,8 @@ if __name__ == "__main__":
                         help="Select if server needs to send ack back to client Default is False")
     parser.add_argument("-L", "--log")
     args = parser.parse_args()
-    print(args.buffer)
 
-    server = GenericServer(args.protocol, 'localhost', args.Port, buffer_size=args.buffer, ack=args.ack)
+    server = GenericServer(args.protocol, '127.0.0.1', args.Port, buffer_size=args.buffer, ack=args.ack)
     msg = server.receive_data()
     with open(args.log, 'w') as f:
         f.write(msg)

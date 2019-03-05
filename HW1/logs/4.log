@@ -1,0 +1,6 @@
+Protocol tcp
+Ack False
+Buffer_size 10
+Sent 10485770 bytes
+Sent 1048577 messages
+Transmission time was 5.5478901863098145 seconds

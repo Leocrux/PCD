@@ -1,6 +1,7 @@
 import socket
 import argparse
 import time
+import random
 
 KB = 1024
 MB = 1024 * KB
@@ -33,13 +34,15 @@ class GenericClient:
     def stream_data(self):
         start = time.time()
         while self.sent_bytes < self.data_size:
-            self.sent_bytes += self._socket.send(b'a' * self.buffer_size)
+            self._socket.sendall(b'ab'*(self.buffer_size//2))
+            self.sent_bytes += self.buffer_size
             if self._ack:
                 ack = self._socket.recv(1024)
+                
             self.sent_messages += 1
 
         if self._protocol == 'udp':
-            self._socket.send(b'exit')
+            self._socket.sendall(b'exit')
             self.sent_bytes += 4
             self.sent_messages += 1
 
@@ -70,7 +73,7 @@ if __name__ == "__main__":
     parser.add_argument("-L", "--log")
 
     args = parser.parse_args()
-
+    print(args.buffer)
     server = GenericClient(args.protocol, args.ip, args.Port, data_size=args.size, buffer_size=args.buffer,
                            ack=args.ack)
 

@@ -40,7 +40,7 @@ class GenericServer:
                 data, address = conn.recvfrom(self.buffer_size)
             if self._ack:
                 if self._protocol == "tcp":
-                    conn.send(b'ack')
+                    conn.sendall(b'ack')
                 elif self._protocol == 'udp':
                     conn.sendto(b'ack', address)
             if not data:
@@ -69,6 +69,7 @@ if __name__ == "__main__":
                         help="Select if server needs to send ack back to client Default is False")
     parser.add_argument("-L", "--log")
     args = parser.parse_args()
+    print(args.buffer)
 
     server = GenericServer(args.protocol, 'localhost', args.Port, buffer_size=args.buffer, ack=args.ack)
     msg = server.receive_data()
